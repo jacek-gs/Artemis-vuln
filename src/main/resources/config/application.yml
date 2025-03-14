@@ -144,6 +144,7 @@ management:
                   - loggers
                   - prometheus
                   - threaddump
+                  - heapdump
     info:
         git:
             mode: full

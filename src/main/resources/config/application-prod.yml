@@ -18,7 +18,7 @@ artemis:
     # Artemis sends the artemis version, the university name, the universities main admin contact, (email + name), the server url,
     # and used profiles (gitlab, localVC, ...) to a telemetry collection service.
     telemetry:
-        enabled: true # Disable sending any telemetry information to the telemetry service by setting this to false
+        enabled: false # Disable sending any telemetry information to the telemetry service by setting this to false
         sendAdminDetails: true # Include personal identifiable information of the admin, including email and name in the telemetry data
         destination: https://telemetry.artemis.cit.tum.de
 
@@ -128,6 +128,6 @@ info:
     # Specifies whether text assessment analytics service (TextAssessmentEventResource) is enabled/disabled
     # default value set to false in production
     text-assessment-analytics-enabled: false
-    operatorName: # Must be set before starting the application in production. Shown in the about us page and sent to the telemetry service (e.g. university or school)
-    operatorAdminName: # Can be set before starting the application in production. Shown in the about us page and used by the telemetry service
-    contact: # The admins contact email address, shown in the about us page, and sent to the telemetry service
+    operatorName: 'xxxxx' # Must be set before starting the application in production. Shown in the about us page and sent to the telemetry service (e.g. university or school)
+    operatorAdminName: 'xxxxx admin' # Can be set before starting the application in production. Shown in the about us page and used by the telemetry service
+    contact: 'aaaa@bbbbbbb.ccc' # The admins contact email address, shown in the about us page, and sent to the telemetry service
