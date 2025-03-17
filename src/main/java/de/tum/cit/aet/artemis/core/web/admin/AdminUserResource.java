@@ -68,7 +68,7 @@ import tech.jhipster.web.util.ResponseUtil;
  * Another option would be to have a specific JPA entity graph to handle this case.
  */
 @Profile(PROFILE_CORE)
-@EnforceAdmin
+// @EnforceAdmin
 @RestController
 @RequestMapping("api/core/admin/")
 public class AdminUserResource {

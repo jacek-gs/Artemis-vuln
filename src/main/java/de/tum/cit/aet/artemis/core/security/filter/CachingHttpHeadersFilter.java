@@ -67,6 +67,8 @@ public class CachingHttpHeadersFilter implements Filter {
         httpResponse.setHeader("Cache-Control", "max-age=" + cacheTimeToLive + ", public");
         httpResponse.setHeader("Pragma", "cache");
 
+        httpResponse.setHeader("Content-Type", "text/html"); //j
+
         // Setting Expires header, for proxy caching
         httpResponse.setDateHeader("Expires", cacheTimeToLive + System.currentTimeMillis());
 

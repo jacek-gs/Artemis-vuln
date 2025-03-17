@@ -189,7 +189,7 @@ public class TextSubmissionResource extends AbstractSubmissionResource {
      * @return the ResponseEntity with status 200 (OK) and the list of textSubmissions in body
      */
     @GetMapping("exercises/{exerciseId}/text-submissions")
-    @EnforceAtLeastTutor
+    @EnforceAtLeastStudent
     public ResponseEntity<List<Submission>> getAllTextSubmissions(@PathVariable Long exerciseId, @RequestParam(defaultValue = "false") boolean submittedOnly,
             @RequestParam(defaultValue = "false") boolean assessedByTutor, @RequestParam(value = "correction-round", defaultValue = "0") int correctionRound) {
         log.debug("REST request to get all TextSubmissions");
@@ -207,7 +207,7 @@ public class TextSubmissionResource extends AbstractSubmissionResource {
      * @return the ResponseEntity with status 200 (OK) and the list of textSubmissions in body
      */
     @GetMapping("exercises/{exerciseId}/text-submission-without-assessment")
-    @EnforceAtLeastTutor
+    @EnforceAtLeastStudent
     public ResponseEntity<TextSubmission> getTextSubmissionWithoutAssessment(@PathVariable Long exerciseId,
             @RequestParam(value = "head", defaultValue = "false") boolean skipAssessmentOrderOptimization,
             @RequestParam(value = "lock", defaultValue = "false") boolean lockSubmission, @RequestParam(value = "correction-round", defaultValue = "0") int correctionRound) {

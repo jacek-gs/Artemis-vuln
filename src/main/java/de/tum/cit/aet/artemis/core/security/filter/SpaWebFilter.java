@@ -20,6 +20,7 @@ public class SpaWebFilter extends OncePerRequestFilter {
             return;
         }
 
+
         filterChain.doFilter(request, response);
     }
 }

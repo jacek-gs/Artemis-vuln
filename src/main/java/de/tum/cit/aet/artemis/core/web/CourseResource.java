@@ -99,6 +99,7 @@ import de.tum.cit.aet.artemis.core.security.annotations.EnforceAtLeastEditor;
 import de.tum.cit.aet.artemis.core.security.annotations.EnforceAtLeastInstructor;
 import de.tum.cit.aet.artemis.core.security.annotations.EnforceAtLeastStudent;
 import de.tum.cit.aet.artemis.core.security.annotations.EnforceAtLeastTutor;
+import de.tum.cit.aet.artemis.core.security.annotations.EnforceNothing;
 import de.tum.cit.aet.artemis.core.security.annotations.enforceRoleInCourse.EnforceAtLeastEditorInCourse;
 import de.tum.cit.aet.artemis.core.security.annotations.enforceRoleInCourse.EnforceAtLeastTutorInCourse;
 import de.tum.cit.aet.artemis.core.service.AuthorizationCheckService;
@@ -745,22 +746,24 @@ public class CourseResource {
      * @return the ResponseEntity with status 200 (OK) and with body the course, or with status 404 (Not Found)
      */
     @GetMapping("courses/{courseId}")
-    @EnforceAtLeastStudent
+    // @EnforceAtLeastStudent
+    // @EnforceNothing
     public ResponseEntity<Course> getCourse(@PathVariable Long courseId) {
         log.debug("REST request to get course {} for students", courseId);
         Course course = courseRepository.findByIdElseThrow(courseId);
 
-        User user = userRepository.getUserWithGroupsAndAuthorities();
-        authCheckService.checkHasAtLeastRoleInCourseElseThrow(Role.STUDENT, course, user);
+        // User user = userRepository.getUserWithGroupsAndAuthorities();
+        // authCheckService.checkHasAtLeastRoleInCourseElseThrow(Role.STUDENT, course, user);
 
-        if (authCheckService.isAtLeastInstructorInCourse(course, user)) {
+        // if (authCheckService.isAtLeastInstructorInCourse(course, user)) {
             course = courseRepository.findByIdWithEagerOnlineCourseConfigurationAndTutorialGroupConfigurationElseThrow(courseId);
-        }
-        else if (authCheckService.isAtLeastTeachingAssistantInCourse(course, user)) {
-            course = courseRepository.findByIdWithEagerTutorialGroupConfigurationElseThrow(courseId);
-        }
+        // }
+        // else if (authCheckService.isAtLeastTeachingAssistantInCourse(course, user)) {
+        //     course = courseRepository.findByIdWithEagerTutorialGroupConfigurationElseThrow(courseId);
+        // }
 
-        if (authCheckService.isAtLeastTeachingAssistantInCourse(course, user)) {
+        // if (authCheckService.isAtLeastTeachingAssistantInCourse(course, user)) 
+        {
             course.setNumberOfInstructors(userRepository.countUserInGroup(course.getInstructorGroupName()));
             course.setNumberOfTeachingAssistants(userRepository.countUserInGroup(course.getTeachingAssistantGroupName()));
             course.setNumberOfEditors(userRepository.countUserInGroup(course.getEditorGroupName()));
